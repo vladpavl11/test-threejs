@@ -24,13 +24,13 @@ function init() {
   var width = 100;
   var height = 130;
 
-  var slide = new Slide(width, height, 'out');
-	var l1 = new THREE.ImageLoader();
-	l1.setCrossOrigin('Anonymous');
-	l1.load('images/bulls-front-1.png', function(img) {
-	  slide.setImage(img);
-	})
-  root.scene.add(slide);
+ //  var slide = new Slide(width, height, 'out');
+	// var l1 = new THREE.ImageLoader();
+	// l1.setCrossOrigin('Anonymous');
+	// l1.load('images/bulls-front-1.png', function(img) {
+	//   slide.setImage(img);
+	// })
+ //  root.scene.add(slide);
 
   var slide2 = new Slide(width, height, 'in');
   var l2 = new THREE.ImageLoader();
@@ -43,11 +43,11 @@ function init() {
 
   var timeLine = new TimelineMax({ repeatDelay:1.0});
 
-  timeLine.add(slide.transition(), 0);
+  // timeLine.add(slide.transition(), 0);
   timeLine.add(slide2.transition(), 0);
 
   createTweenScrubber(timeLine);
-
+  // pause nimation letter P
   window.addEventListener('keyup', function(e) {
     if (e.keyCode === 80) {
       timeLine.paused(!timeLine.paused());
@@ -109,7 +109,7 @@ function Slide(width, height, animationPhase) {
 
     tempPoint.x = THREE.Math.randFloat(0.1, 0.3) * 50;
     tempPoint.y = signY * THREE.Math.randFloat(0.1, 0.3) * 70;
-    tempPoint.z = THREE.Math.randFloatSpread(90);
+    tempPoint.z = THREE.Math.randFloatSpread(10);
 
     return tempPoint;
   }
@@ -119,7 +119,7 @@ function Slide(width, height, animationPhase) {
 
     tempPoint.x = THREE.Math.randFloat(0.3, 0.6) * 50;
     tempPoint.y = -signY * THREE.Math.randFloat(0.3, 0.6) * 70;
-    tempPoint.z = THREE.Math.randFloatSpread(90);
+    tempPoint.z = THREE.Math.randFloatSpread(10);
 
     return tempPoint;
   }
@@ -160,12 +160,12 @@ function Slide(width, height, animationPhase) {
     }
 
     for (v = 0; v < 9; v += 3) {
-      aStartPosition.array[i3 + v]     = startPosition.x;
-      aStartPosition.array[i3 + v + 1] = startPosition.y;
+      aStartPosition.array[i3 + v]     = 0;
+      aStartPosition.array[i3 + v + 1] = 100;
       aStartPosition.array[i3 + v + 2] = startPosition.z;
 
-      aControl0.array[i3 + v]     = control0.x;
-      aControl0.array[i3 + v + 1] = control0.y;
+      aControl0.array[i3 + v]     = -100;
+      aControl0.array[i3 + v + 1] = 100;
       aControl0.array[i3 + v + 2] = control0.z;
 
       aControl1.array[i3 + v]     = control1.x;
@@ -187,9 +187,9 @@ function Slide(width, height, animationPhase) {
       },
       shaderFunctions: [
         THREE.BAS.ShaderChunk['cubic_bezier'],
-        //THREE.BAS.ShaderChunk[(animationPhase === 'in' ? 'ease_out_cubic' : 'ease_in_cubic')],
-        THREE.BAS.ShaderChunk['ease_in_out_cubic'],
-        THREE.BAS.ShaderChunk['quaternion_rotation']
+        // THREE.BAS.ShaderChunk[(animationPhase === 'in' ? 'ease_out_cubic' : 'ease_in_cubic')],
+        THREE.BAS.ShaderChunk['ease_in_quad'],
+        // THREE.BAS.ShaderChunk['quaternion_rotation']
       ],
       shaderParameters: [
         'uniform float uTime;',
