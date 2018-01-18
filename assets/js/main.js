@@ -612,32 +612,33 @@ stop();
 	//  .to("#square", 1, {delay:0.6,morphSVG:".st2",ease: Expo.easeOut}, "morphIt")
 
 	// test scroll svg
-  // function pathPrepare ($el) {
-  //   var lineLength = $el[0].getTotalLength();
-  //   $el.css("stroke-dasharray", lineLength);
-  //   $el.css("stroke-dashoffset", lineLength);
-  // }
+  function pathPrepare ($el) {
+    var lineLength = $el[0].getTotalLength();
+    $el.css("stroke-dasharray", lineLength);
+    $el.css("stroke-dashoffset", lineLength);
+  }
 
-  // var $word = $("#square");
-  // var $dot = $("path#dot");
+  var $word = $("path.st1");
+  var $dot = $("path#dot");
+  var $logo = $('.logo');
 
-  // // prepare SVG
-  // pathPrepare($word);
-  // pathPrepare($dot);
+  // prepare SVG
+  pathPrepare($word);
+  pathPrepare($dot);
 
-  // // init controller
-  // var controller = new ScrollMagic.Controller();
+  // init controller
+  var controller = new ScrollMagic.Controller();
 
-  // // build tween
-  // var tween = new TimelineMax()
-  //   .add(TweenMax.to($word, 0.9, {strokeDashoffset: 0, ease:Linear.easeNone})) // draw word for 0.9
-  //   // .add(TweenMax.to($dot, 0.1, {strokeDashoffset: 0, ease:Linear.easeNone}))  // draw dot for 0.1
-  //   // .add(TweenMax.to("path", 1, {stroke: "#33629c", ease:Linear.easeNone}), 0);     // change color during the whole thing
+  // build tween
+  var tween = new TimelineMax()
+    .add(TweenMax.to($logo, 0.9, {backgroundColor:"red", opacity: 1, ease:Power3.easeIn})) // draw word for 0.9
+    // .add(TweenMax.to($dot, 0.1, {strokeDashoffset: 0, ease:Linear.easeNone}))  // draw dot for 0.1
+    // .add(TweenMax.to("path", 1, {stroke: "#33629c", ease:Linear.easeNone}), 0);     // change color during the whole thing
 
-  // // build scene
-  // var scene = new ScrollMagic.Scene({triggerElement: "#dot", duration: 1000, tweenChanges: true})
-  //         .setTween(tween)
-  //         .addTo(controller);
+  // build scene
+  var scene = new ScrollMagic.Scene({triggerElement: ".logo", duration: 200, tweenChanges: true})
+          .setTween(tween)
+          .addTo(controller);
 
 	$(function() {
 		// $('#main').scrollex({
