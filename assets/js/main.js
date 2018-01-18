@@ -163,16 +163,16 @@ function Slide(width, height, animationPhase) {
     }
 
     for (v = 0; v < 9; v += 3) {
-      aStartPosition.array[i3 + v]     = 100;
+      aStartPosition.array[i3 + v]     = 0;
       aStartPosition.array[i3 + v + 1] = 100
       aStartPosition.array[i3 + v + 2] = startPosition.z;
 
-      aControl0.array[i3 + v]     = 100;
+      aControl0.array[i3 + v]     = 0;
       aControl0.array[i3 + v + 1] = 100;
       aControl0.array[i3 + v + 2] = control0.z;
 
-      aControl1.array[i3 + v]     = 100;
-      aControl1.array[i3 + v + 1] = control1.y;
+      aControl1.array[i3 + v]     = 0;
+      aControl1.array[i3 + v + 1] = 100;
       aControl1.array[i3 + v + 2] = control1.z;
 
       aEndPosition.array[i3 + v]     = endPosition.x;

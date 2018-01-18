@@ -1671,10 +1671,12 @@ ol {
 
 ul {
   list-style: disc;
-  margin: 0 0 2rem 0;
-  padding-left: 1rem; }
+  ;
+   }
   ul li {
-    padding-left: 0.5rem; }
+    
+        list-style: none;
+  }
  
 
 /* Main */
