@@ -5,6 +5,9 @@
 */
 
 (function($) {
+
+
+
 	window.onload = init;
 console.ward = function() {}; // what warnings?
 
@@ -17,17 +20,17 @@ function init() {
 
   root.renderer.setClearColor(0x000000, 0);
   root.renderer.setPixelRatio(window.devicePixelRatio || 1);
-  root.camera.position.set(0, 0, 90);
+  root.camera.position.set(0, 0, 100);
 
 
 
-  var width = 100;
+  var width = 80;
   var height = 130;
 
  //  var slide = new Slide(width, height, 'out');
 	// var l1 = new THREE.ImageLoader();
 	// l1.setCrossOrigin('Anonymous');
-	// l1.load('images/bulls-front-1.png', function(img) {
+	// l1.load('images/pic01.jpg', function(img) {
 	//   slide.setImage(img);
 	// })
  //  root.scene.add(slide);
@@ -35,7 +38,7 @@ function init() {
   var slide2 = new Slide(width, height, 'in');
   var l2 = new THREE.ImageLoader();
 	l2.setCrossOrigin('Anonymous');
-	l2.load('images/ganja.png', function(img) {
+	l2.load('images/sharksbag1.png', function(img) {
 		slide2.setImage(img);
 	})
 	
@@ -65,7 +68,7 @@ function init() {
             }).setTween($tween).addTo(scrollController)
             // .addIndicators({name: "tween css class"});
           }
-    createScene(timeLine, "#three-container", "1000", 100, 200); 
+    createScene(timeLine, "#three-container", "800", 100, 150); 
 }
 
 ////////////////////
@@ -160,15 +163,15 @@ function Slide(width, height, animationPhase) {
     }
 
     for (v = 0; v < 9; v += 3) {
-      aStartPosition.array[i3 + v]     = 0;
-      aStartPosition.array[i3 + v + 1] = 100;
+      aStartPosition.array[i3 + v]     = 100;
+      aStartPosition.array[i3 + v + 1] = 100
       aStartPosition.array[i3 + v + 2] = startPosition.z;
 
-      aControl0.array[i3 + v]     = -100;
+      aControl0.array[i3 + v]     = 100;
       aControl0.array[i3 + v + 1] = 100;
       aControl0.array[i3 + v + 2] = control0.z;
 
-      aControl1.array[i3 + v]     = control1.x;
+      aControl1.array[i3 + v]     = 100;
       aControl1.array[i3 + v + 1] = control1.y;
       aControl1.array[i3 + v + 2] = control1.z;
 
@@ -303,6 +306,7 @@ function THREERoot(params) {
   if (params.createCameraControls) {
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
   }
+window.scene = this.scene;
 
   this.resize = this.resize.bind(this);
   this.tick = this.tick.bind(this);
@@ -599,15 +603,42 @@ stop();
 	// 	return $(this);
 
 	// };
-	var tl = new TimelineMax({delay:1});
-	tl
-	.add("morphIt")
+	// var tl = new TimelineMax({delay:1});
+	// tl
+	// .add("morphIt")
 	
-	 .to("#main", 1, {opacity:1}, "morphIt")
-	 .to("#square", 1, {delay:0.6,morphSVG:".lg",ease: Expo.easeOut}, "morphIt")
-	 .to("#square", 1, {delay:0.6,morphSVG:".st2",ease: Expo.easeOut}, "morphIt")
+	//  .to("#main", 1, {opacity:1}, "morphIt")
+	//  .to("#square", 1, {delay:0.6,morphSVG:".lg",ease: Expo.easeOut}, "morphIt")
+	//  .to("#square", 1, {delay:0.6,morphSVG:".st2",ease: Expo.easeOut}, "morphIt")
 
-	
+	// test scroll svg
+  // function pathPrepare ($el) {
+  //   var lineLength = $el[0].getTotalLength();
+  //   $el.css("stroke-dasharray", lineLength);
+  //   $el.css("stroke-dashoffset", lineLength);
+  // }
+
+  // var $word = $("#square");
+  // var $dot = $("path#dot");
+
+  // // prepare SVG
+  // pathPrepare($word);
+  // pathPrepare($dot);
+
+  // // init controller
+  // var controller = new ScrollMagic.Controller();
+
+  // // build tween
+  // var tween = new TimelineMax()
+  //   .add(TweenMax.to($word, 0.9, {strokeDashoffset: 0, ease:Linear.easeNone})) // draw word for 0.9
+  //   // .add(TweenMax.to($dot, 0.1, {strokeDashoffset: 0, ease:Linear.easeNone}))  // draw dot for 0.1
+  //   // .add(TweenMax.to("path", 1, {stroke: "#33629c", ease:Linear.easeNone}), 0);     // change color during the whole thing
+
+  // // build scene
+  // var scene = new ScrollMagic.Scene({triggerElement: "#dot", duration: 1000, tweenChanges: true})
+  //         .setTween(tween)
+  //         .addTo(controller);
+
 	$(function() {
 		// $('#main').scrollex({
 		//     enter: function() {
@@ -786,5 +817,71 @@ stop();
 			}
 
 	});
+// Intro.
+      var $intro = $('#intro');
+      var $window = $(window),
+      $body = $('body'),
+      $wrapper = $('#wrapper'),
+      $header = $('#header'),
+      $nav = $('#nav'),
+      $main = $('#main'),
+      $navPanelToggle, $navPanel, $navPanelInner;
+
+      if ($intro.length > 0) {
+
+        // Hack: Fix flex min-height on IE.
+          if (skel.vars.browser == 'ie') {
+            $window.on('resize.ie-intro-fix', function() {
+
+              var h = $intro.height();
+
+              if (h > $window.height())
+                $intro.css('height', 'auto');
+              else
+                $intro.css('height', h);
+
+            }).trigger('resize.ie-intro-fix');
+          }
+
+        // Hide intro on scroll (> small).
+          skel.on('!small -small', function() {
+
+            $main.unscrollex();
+
+            $main.scrollex({
+              mode: 'bottom',
+              top: '25vh',
+              bottom: '-50vh',
+              enter: function() {
+                $intro.addClass('hidden');
+              },
+              leave: function() {
+                $intro.removeClass('hidden');
+                $('.logo').css("background-color", "yellow");
+              }
+            });
+
+          });
+
+        // Hide intro on scroll (<= small).
+          skel.on('+small', function() {
+
+            $main.unscrollex();
+
+            $main.scrollex({
+              mode: 'middle',
+              top: '15vh',
+              bottom: '-15vh',
+              enter: function() {
+                $intro.addClass('hidden');
+              },
+              leave: function() {
+                $intro.removeClass('hidden');
+              }
+            });
+
+        });
+
+      }
 
 })(jQuery);
