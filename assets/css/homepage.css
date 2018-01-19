@@ -13,8 +13,10 @@ body,html{
 
   #intro {
     color: #ffffff;
-    padding: 8rem 4rem 6rem 4rem ;
-    -moz-align-items: center;
+    opacity: 0;
+    margin-top: -30px;
+/*    padding: 8rem 4rem 0;
+*/    -moz-align-items: center;
     -webkit-align-items: center;
     -ms-align-items: center;
     align-items: center;
@@ -125,83 +127,37 @@ body,html{
       text-align: center;
     }
 
-    #intro + #header {
-      margin-top: -20rem;
-    }
-
-      #intro + #header .logo {
-        -moz-transform: translateY(2rem);
-        -webkit-transform: translateY(2rem);
-        -ms-transform: translateY(2rem);
-        transform: translateY(2rem);
-        opacity: 0;
-        visibility: hidden;
-      }
-
-    #intro.hidden {
-      -moz-pointer-events: none;
-      -webkit-pointer-events: none;
-      -ms-pointer-events: none;
-      pointer-events: none;
-      -moz-transform: translateY(2rem);
-      -webkit-transform: translateY(2rem);
-      -ms-transform: translateY(2rem);
-      transform: translateY(2rem);
-      -moz-transition: opacity 0.5s ease, -moz-transform 0.5s ease, visibility 0.5s;
-      -webkit-transition: opacity 0.5s ease, -webkit-transform 0.5s ease, visibility 0.5s;
-      -ms-transition: opacity 0.5s ease, -ms-transform 0.5s ease, visibility 0.5s;
-      transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
-      opacity: 0;
-      visibility: hidden;
-    }
-
-      #intro.hidden + #header .logo {
-        -moz-transform: translateY(0);
-        -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-      }
-
-    body.is-loading #intro {
-      -moz-transform: translateY(2rem);
-      -webkit-transform: translateY(2rem);
-      -ms-transform: translateY(2rem);
-      transform: translateY(2rem);
-      opacity: 0;
-    }
-
-      body.is-loading #intro:not(.hidden) + #header + #nav {
+   
+      /*body.is-loading #intro:not(.hidden) + #sceneLogo + #nav {
         -moz-transform: translateY(4rem);
         -webkit-transform: translateY(4rem);
         -ms-transform: translateY(4rem);
         transform: translateY(4rem);
         opacity: 0;
       }
-
+*/
     @media screen and (max-width: 980px) {
 
       #intro {
-        padding: 4rem 4rem 2rem 4rem ;
-        min-height: 90vh;
+/*        padding: 4rem 4rem 2rem 4rem ;
+*/        min-height: 90vh;
       }
 
         #intro p br {
           display: none;
         }
 
-        #intro + #header {
+        /*#intro + #sceneLogo {
           margin-top: -14rem;
-        }
+        }*/
 
     }
 
     @media screen and (max-width: 736px) {
 
       #intro {
-        padding: 3rem 2rem 1rem 2rem ;
-        min-height: 80vh;
+        padding: 25rem 2rem 0 2rem;
+        min-height: 100vh;
       }
 
         #intro h1 {
@@ -215,17 +171,15 @@ body,html{
           margin-top: 0rem;
         }
 
-        #intro .actions {
-          display: none;
-        }
+       
 
     }
-/* Header */
-header {
+/* sceneLogo */
+.sceneLogo {
     cursor: default;
   }
 
-    header > .date {
+    .sceneLogo > .date {
       display: block;
       font-size: 0.8rem;
       height: 1;
@@ -233,51 +187,51 @@ header {
       position: relative;
     }
 
-    header > p {
+    .sceneLogo > p {
       font-style: italic;
     }
 
-    header > h1 + p {
+    .sceneLogo > h1 + p {
       font-size: 1.1rem;
       margin-top: -0.5rem;
       line-height: 2;
     }
 
-    header > h2 + p {
+    .sceneLogo > h2 + p {
       font-size: 1rem;
       margin-top: -0.75rem;
     }
 
-    header > h3 + p {
+    .sceneLogo > h3 + p {
       font-size: 0.9rem;
       margin-top: -0.75rem;
     }
 
-    header > h4 + p {
+    .sceneLogo > h4 + p {
       font-size: 0.8rem;
       margin-top: -0.75rem;
     }
 
-    header.major {
+    .sceneLogo.major {
       margin: 0 0 4rem 0;
       text-align: center;
     }
 
-      header.major > :last-child {
+      .sceneLogo.major > :last-child {
         margin-bottom: 0;
       }
 
-      header.major > p {
+      .sceneLogo.major > p {
         margin-top: 0;
         text-align: center;
       }
 
-      header.major > .date {
+      .sceneLogo.major > .date {
         font-size: 1rem;
         margin: 0 0 4rem 0;
       }
 
-        header.major > .date:before, header.major > .date:after {
+        .sceneLogo.major > .date:before, .sceneLogo.major > .date:after {
           content: '';
           display: block;
           position: absolute;
@@ -286,17 +240,17 @@ header {
           border-top: solid 2px;
         }
 
-        header.major > .date:before {
+        .sceneLogo.major > .date:before {
           left: 0;
         }
 
-        header.major > .date:after {
+        .sceneLogo.major > .date:after {
           right: 0;
         }
 
     @media screen and (max-width: 980px) {
 
-      header br {
+      .sceneLogo br {
         display: none;
       }
 
@@ -304,17 +258,17 @@ header {
 
     @media screen and (max-width: 736px) {
 
-      header.major {
+      .sceneLogo.major {
         margin: 0 0 2rem 0;
       }
 
     }
 
-  header.major .date:before, header.major .date:after {
+  .sceneLogo.major .date:before, .sceneLogo.major .date:after {
     border-top-color: #eeeeee;
   }
 
-  #header {
+  #sceneLogo {
     color: #ffffff;
     -moz-align-items: center;
     -webkit-align-items: center;
@@ -347,42 +301,42 @@ header {
     z-index: 2;
   }
 
-    #header input, #header select, #header textarea {
+    #sceneLogo input, #sceneLogo select, #sceneLogo textarea {
       color: #ffffff;
     }
 
-    #header a {
+    #sceneLogo a {
       color: #ffffff;
       border-bottom-color: rgba(255, 255, 255, 0.5);
     }
 
-      #header a:hover {
+      #sceneLogo a:hover {
         border-bottom-color: transparent;
         color: #18bfef !important;
       }
 
-    #header strong, #header b {
+    #sceneLogo strong, #sceneLogo b {
       color: #ffffff;
     }
 
-    #header h1, #header h2, #header h3, #header h4, #header h5, #header h6 {
+    #sceneLogo h1, #sceneLogo h2, #sceneLogo h3, #sceneLogo h4, #sceneLogo h5, #sceneLogo h6 {
       color: #ffffff;
     }
 
-    #header blockquote {
+    #sceneLogo blockquote {
       border-left-color: #ffffff;
     }
 
-    #header code {
+    #sceneLogo code {
       background: rgba(255, 255, 255, 0.075);
       border-color: #ffffff;
     }
 
-    #header hr {
+    #sceneLogo hr {
       border-bottom-color: #ffffff;
     }
 
-    #header .logo {
+    #sceneLogo .logo {
       -moz-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, -moz-transform 0.5s ease, visibility 0.5s;
       -webkit-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, -webkit-transform 0.5s ease, visibility 0.5s;
       -ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, -ms-transform 0.5s ease, visibility 0.5s;
@@ -404,14 +358,14 @@ header {
       visibility: visible;
     }
 
-      #header .logo:hover {
+      #sceneLogo .logo:hover {
         border-color: #18bfef !important;
         color: #18bfef !important;
       }
 
     @media screen and (max-width: 980px) {
 
-      #header {
+      #sceneLogo {
         height: 14rem;
         padding-bottom: 4rem;
       }
@@ -420,11 +374,11 @@ header {
 
     @media screen and (max-width: 736px) {
 
-      #header {
+      #sceneLogo {
         padding-bottom: 3rem;
       }
 
-        #header .logo {
+        #sceneLogo .logo {
           font-size: 1.75rem;
           border-width: 3px !important;
         }

@@ -5,9 +5,35 @@
 */
 
 (function($) {
+ $(window).on('load', function(){
+      TweenMax.to( $('#intro'), 0.1,{ y:0 , opacity:1 , ease:Power0.easeInOut});
 
+   });
+ 
 
+$(window).on("load resize",function(e){
+   var triggerTop = $('#intro').outerHeight();
 
+  ///initial scroll event
+  console.log('var triggerTop', triggerTop);
+  var firstScroll = new ScrollMagic.Controller();
+  var firstScene = new ScrollMagic.Scene({
+                   triggerElement:'.top-title',
+                   offset:100,
+                   duration: 100,
+                  })
+                  .setTween("#intro", 1, {opacity:0,y:30}) // trigger a TweenMax.to tween
+
+                  .addTo(firstScroll);
+  // var firstScenePart2 = new ScrollMagic.Scene({
+  //                  triggerElement:'#intro',
+  //                  duration: 100,
+  //                  offset:triggerTop
+  //                 })
+  //                 .setTween("#sceneLogo", 1, {opacity:1,y:4})
+  //                 .addTo(firstScroll);                
+
+});
 	window.onload = init;
 console.ward = function() {}; // what warnings?
 
@@ -51,11 +77,12 @@ function init() {
 
   createTweenScrubber(timeLine);
   // pause nimation letter P
-  window.addEventListener('keyup', function(e) {
-    if (e.keyCode === 80) {
-      timeLine.paused(!timeLine.paused());
-    }
-  });
+  // window.addEventListener('keyup', function(e) {
+  //   if (e.keyCode === 80) {
+  //     timeLine.paused(!timeLine.paused());
+  //   }
+  // });
+// scroll controll
   var controller = new ScrollMagic.Controller();
   var scrollController = new ScrollMagic.Controller();
   function createScene($tween, $triggerElement, $duration, $triggerHook, $offset) {
@@ -68,7 +95,7 @@ function init() {
             }).setTween($tween).addTo(scrollController)
             // .addIndicators({name: "tween css class"});
           }
-    createScene(timeLine, "#three-container", "800", 100, 150); 
+    createScene(timeLine, "#three-container", "500", 100, 100); 
 }
 
 ////////////////////
@@ -306,7 +333,7 @@ function THREERoot(params) {
   if (params.createCameraControls) {
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
   }
-window.scene = this.scene;
+// window.scene = this.scene;
 
   this.resize = this.resize.bind(this);
   this.tick = this.tick.bind(this);
@@ -510,14 +537,7 @@ stop();
 }
 
 
-	skel.breakpoints({
-		xlarge:	'(max-width: 1680px)',
-		large:	'(max-width: 1280px)',
-		medium:	'(max-width: 980px)',
-		small:	'(max-width: 736px)',
-		xsmall:	'(max-width: 480px)',
-		xxsmall: '(max-width: 360px)'
-	});
+	
 
 	/**
 	 * Applies parallax scrolling to an element's background image.
@@ -640,249 +660,8 @@ stop();
           .setTween(tween)
           .addTo(controller);
 
-	$(function() {
-		// $('#main').scrollex({
-		//     enter: function() {
-
-		//       // Set #foobar's background color to green when we scroll into it.
-		//         $(this).css('opacity', '1');
-
-		//     },
-		//     leave: function() {
-
-		//       // Reset #foobar's background color when we scroll out of it.
-		//         $(this).css('opacity', '0.2');
-
-		//     }
-		//   });
-
-		var	$window = $(window),
-			$body = $('body'),
-			$wrapper = $('#wrapper'),
-			$header = $('#header'),
-			$nav = $('#nav'),
-			$main = $('#main'),
-			$navPanelToggle, $navPanel, $navPanelInner;
-
-		// Disable animations/transitions until the page has loaded.
-			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
-			});
-
-		// Prioritize "important" elements on medium.
-			skel.on('+medium -medium', function() {
-				$.prioritize(
-					'.important\\28 medium\\29',
-					skel.breakpoint('medium').active
-				);
-			});
-
-		// Scrolly.
-			// $('.scrolly').scrolly();
-
-		// Background.
-			// $wrapper._parallax(0.925);
-
-		// Nav Panel.
-
-			// Toggle.
-				$navPanelToggle = $(
-					'<a href="#navPanel" id="navPanelToggle">Menu</a>'
-				)
-					.appendTo($wrapper);
-
-				// Change toggle styling once we've scrolled past the header.
-					$header.scrollex({
-						bottom: '5vh',
-						enter: function() {
-							$navPanelToggle.removeClass('alt');
-						},
-						leave: function() {
-							$navPanelToggle.addClass('alt');
-						}
-					});
-
-			// Panel.
-				$navPanel = $(
-					'<div id="navPanel">' +
-						'<nav>' +
-						'</nav>' +
-						'<a href="#navPanel" class="close"></a>' +
-					'</div>'
-				)
-					.appendTo($body)
-					.panel({
-						delay: 500,
-						hideOnClick: true,
-						hideOnSwipe: true,
-						resetScroll: true,
-						resetForms: true,
-						side: 'right',
-						target: $body,
-						visibleClass: 'is-navPanel-visible'
-					});
-
-				// Get inner.
-					$navPanelInner = $navPanel.children('nav');
-
-				// Move nav content on breakpoint change.
-					var $navContent = $nav.children();
-
-					skel.on('!medium -medium', function() {
-
-						// NavPanel -> Nav.
-							$navContent.appendTo($nav);
-
-						// Flip icon classes.
-							$nav.find('.icons, .icon')
-								.removeClass('alt');
-
-					});
-
-					skel.on('+medium', function() {
-
-						// Nav -> NavPanel.
-						$navContent.appendTo($navPanelInner);
-
-						// Flip icon classes.
-							$navPanelInner.find('.icons, .icon')
-								.addClass('alt');
-
-					});
-
-				// Hack: Disable transitions on WP.
-					if (skel.vars.os == 'wp'
-					&&	skel.vars.osVersion < 10)
-						$navPanel
-							.css('transition', 'none');
-
-		// Intro.
-			var $intro = $('#intro');
-
-			if ($intro.length > 0) {
-
-				// Hack: Fix flex min-height on IE.
-					if (skel.vars.browser == 'ie') {
-						$window.on('resize.ie-intro-fix', function() {
-
-							var h = $intro.height();
-
-							if (h > $window.height())
-								$intro.css('height', 'auto');
-							else
-								$intro.css('height', h);
-
-						}).trigger('resize.ie-intro-fix');
-					}
-
-				// Hide intro on scroll (> small).
-					skel.on('!small -small', function() {
-
-						$main.unscrollex();
-
-						$main.scrollex({
-							mode: 'bottom',
-							top: '25vh',
-							bottom: '-50vh',
-							enter: function() {
-								$intro.addClass('hidden');
-							},
-							leave: function() {
-								$intro.removeClass('hidden');
-							}
-						});
-
-					});
-
-				// Hide intro on scroll (<= small).
-					skel.on('+small', function() {
-
-						$main.unscrollex();
-
-						$main.scrollex({
-							mode: 'middle',
-							top: '15vh',
-							bottom: '-15vh',
-							enter: function() {
-								$intro.addClass('hidden');
-							},
-							leave: function() {
-								$intro.removeClass('hidden');
-							}
-						});
-
-				});
-
-			}
-
-	});
+	
 // Intro.
-      var $intro = $('#intro');
-      var $window = $(window),
-      $body = $('body'),
-      $wrapper = $('#wrapper'),
-      $header = $('#header'),
-      $nav = $('#nav'),
-      $main = $('#main'),
-      $navPanelToggle, $navPanel, $navPanelInner;
-
-      if ($intro.length > 0) {
-
-        // Hack: Fix flex min-height on IE.
-          if (skel.vars.browser == 'ie') {
-            $window.on('resize.ie-intro-fix', function() {
-
-              var h = $intro.height();
-
-              if (h > $window.height())
-                $intro.css('height', 'auto');
-              else
-                $intro.css('height', h);
-
-            }).trigger('resize.ie-intro-fix');
-          }
-
-        // Hide intro on scroll (> small).
-          skel.on('!small -small', function() {
-
-            $main.unscrollex();
-
-            $main.scrollex({
-              mode: 'bottom',
-              top: '25vh',
-              bottom: '-50vh',
-              enter: function() {
-                $intro.addClass('hidden');
-              },
-              leave: function() {
-                $intro.removeClass('hidden');
-                $('.logo').css("background-color", "yellow");
-              }
-            });
-
-          });
-
-        // Hide intro on scroll (<= small).
-          skel.on('+small', function() {
-
-            $main.unscrollex();
-
-            $main.scrollex({
-              mode: 'middle',
-              top: '15vh',
-              bottom: '-15vh',
-              enter: function() {
-                $intro.addClass('hidden');
-              },
-              leave: function() {
-                $intro.removeClass('hidden');
-              }
-            });
-
-        });
-
-      }
+      
 
 })(jQuery);
