@@ -13,11 +13,11 @@ body,html{
 .parallax-window {
     min-height: 400px;
     background: transparent;
+    position: relative;
 }
   #intro {
     color: #ffffff;
     opacity: 0;
-    margin-top: -30px;
 /*    padding: 8rem 4rem 0;
 */    -moz-align-items: center;
     -webkit-align-items: center;
@@ -39,11 +39,13 @@ body,html{
     -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
     -ms-transition: opacity 1s ease, -ms-transform 1s ease;
     transition: opacity 1s ease, transform 1s ease;
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5vw;
     cursor: default;
     text-align: center;
     z-index: 1;
-    min-height: 100vh;
   }
 
     #intro input, #intro select, #intro textarea {

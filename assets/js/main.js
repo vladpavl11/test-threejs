@@ -5,15 +5,24 @@
 */
 
 (function($) {
-  $(window).resize(function(){
-            var parallaxHeight = Math.max($(window).height() * 0.7, 200) | 0;
-            $('.parallax-container').height(parallaxHeight);
-          }).trigger('resize');
+  // $(window).resize(function(){
+  //           var parallaxHeight = Math.max($(window).height() * 0.7, 200) | 0;
+  //           $('.parallax-container').height(parallaxHeight);
+  //         }).trigger('resize');
  $(window).on('load', function(){
-      TweenMax.to( $('#intro'), 0.1,{ y:0 , opacity:1 , ease:Power0.easeInOut});
-
+      TweenMax.to( $('#intro'), 0.1,{ y:20 , opacity:1 , ease:Power0.easeInOut});
    });
- 
+
+ var timeline = TweenMax.to({}, 2, {
+    onUpdateParams:["{self}"],
+    onUpdate:function(tl){
+      var tlp = (tl.progress()*100)>>0;
+      TweenMax.set('#parallax-one',{'-webkit-filter':'blur(' + tlp + 'px' + ')','filter':'blur(' + tlp + 'px' + ')'});
+    
+      var heading = $('#parallax-one');
+      heading.text('blur(' + tlp + 'px)');
+    }
+  });
 
 $(window).on("load resize",function(e){
    var triggerTop = $('#intro').outerHeight();
@@ -24,10 +33,9 @@ $(window).on("load resize",function(e){
   var firstScene = new ScrollMagic.Scene({
                    triggerElement:'.top-title',
                    offset:100,
-                   duration: 100,
+                   duration: 30,
                   })
                   .setTween("#intro", 1, {opacity:0,y:30}) // trigger a TweenMax.to tween
-
                   .addTo(firstScroll);
   // var firstScenePart2 = new ScrollMagic.Scene({
   //                  triggerElement:'#intro',
