@@ -10,7 +10,10 @@ body,html{
   border:0;
 }
 /* Intro */
-
+.parallax-window {
+    min-height: 400px;
+    background: transparent;
+}
   #intro {
     color: #ffffff;
     opacity: 0;
