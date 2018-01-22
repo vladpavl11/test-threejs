@@ -9,6 +9,94 @@ body,html{
   margin: 0;
   border:0;
 }
+#parent {
+  padding:0px;
+  display: table;
+  background-position: center;
+  background-size: cover;
+    width: 100%;
+
+
+}
+.child {
+  height: 350px;
+  margin: 0px;
+  float: left;
+  border-top: 0.5px solid #787878;
+  border-bottom: 0.5px solid #787878;
+  border-right: 0.5px solid #787878;
+  font-family:arial;
+  font-size: 1.2em;
+  text-align: center;
+  overflow:hidden;
+    
+
+}
+.child:last-child{
+    border-right: 0;
+
+}
+.slide_wrapper{
+  height: 100%;
+  width:100%;
+  opacity: 0;
+  display: table;
+  position: relative;
+}
+.productIntro{
+  display: table;
+  margin: 0 auto;
+  opacity: 0;
+  position: relative;
+  top: -50px;
+      display: table-cell;
+    vertical-align: middle;
+
+}
+.productIntro h1{
+  font-size: 2.5rem;
+  color: #fff;
+}
+.productIntro p{
+      display: table;
+    margin: auto;
+    color: #F5F5F5;
+}
+.productIntro .actions>li a.button{
+  color: #F5F5F5 !important;
+      box-shadow: inset 0 0 0 2px #F5F5F5;
+}
+#DiacoDesignLink,#pens{
+  color: #fff;
+}
+
+.overlay {
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.lug{
+  position: relative;
+}
+.luggage1{
+  position: relative;
+  left: -200px;
+  opacity: 0;
+  cursor: pointer;
+}
+.luggage2{
+  position: relative;
+  bottom: 200px;
+  opacity: 0;
+cursor: pointer;
+}
+.luggage3{
+  position: relative;
+  right: -200px;
+  opacity: 0;
+cursor: pointer;
+}
 /* Intro */
 .parallax-window {
     min-height: 400px;
@@ -587,3 +675,15 @@ h2.bottomTitle:after { left: 1.5%; }
   }
 
 }
+/* Global Styles */
+
+@import url("//fonts.googleapis.com/css?family=Poiret+One|Josefin+Sans");
+
+html,body {
+color:#fddaec;
+font-family:"Josefin Sans", sans-serif;
+font-size:100%;
+height:100%;
+line-height:1.45;
+}
+
