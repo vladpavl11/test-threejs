@@ -24,6 +24,75 @@
     }
   });
 
+
+ ////featured categories
+
+
+ $(".hover").mouseleave(
+  function () {
+    $(this).removeClass("hover");
+  }
+);
+
+var featuredScroll = new ScrollMagic.Controller();
+
+var tween = new TimelineMax()
+        // .to(".line", 1, {css:{width:'100%',opacity:'1'},ease: Power3.easeOut})
+        .to(".featured_categories", 0.8, { css:{top: "0",opacity:'1'},ease: Power3.easeOut})
+var featuredScene = new ScrollMagic.Scene({triggerElement: ".featured_categories"})
+              .setTween(tween)
+              .addTo(featuredScroll);        
+
+////
+
+
+
+ var n = $(".child").length; // Div count
+ var OW = 90 ; // Div over width
+ TweenMax.set($(".child"),{width:100/n+'%'});
+ $(".child").hover(over,out);
+ function over(){
+        var trigger = $(this).find( ".slide_wrapper" );
+        var pTxt = $(this).find( ".productIntro" );
+        TweenMax.to($(this),0.8,{timeScale:15,opacity:1,width:OW+'%',ease: Power4.easeOut}, "+=1");
+        TweenMax.to(trigger,1,{delay:0.1,opacity:1,ease: Power4.easeOut });
+        TweenMax.to(pTxt,1,{css:{top: "0",opacity:'1'},delay:0.5,ease: Power4.easeOut }, "+=1");
+        TweenMax.to(trigger,1,{delay:0.9, backgroundColor: "rgba(0,0,0,0.8)",ease: Power4.easeOut });
+
+        // TweenMax.to($(this),0.3,{blurFilter:{blurX:0, blurY:20}, ease:SlowMo.ease.config(.7, .7, true)});
+
+        TweenMax.to($(this).siblings(),0.8,{timeScale:15,width:(100-OW)/(n-1)+'%',ease: Power4.easeOut})
+
+
+    }
+ function out(){
+  var pTxt = $(this).find( ".productIntro" );
+    TweenMax.to($(".child"),1,{width:100/n+'%',ease: Power4.easeOut})
+    TweenMax.to($(".slide_wrapper"),1,{opacity:0,ease: Power4.easeOut})
+    TweenMax.to(pTxt,1,{css:{top: "-50",opacity:'0'},delay:0.5,ease: Power4.easeOut }, "+=1");
+
+    // TweenMax.to($(this),1,{ backgroundColor: "rgba(0,0,0,0)" });
+
+  }
+ $(".lug").hover(lugOver,lugOut);
+function lugOver(){
+  TweenMax.to($(this),0.8,{scale:1.1,ease: Power4.easeOut});
+};
+function lugOut(){
+    TweenMax.to($(this),0.8,{scale:1,ease: Power4.easeOut});
+
+};
+ 
+    var luggageScroll = new ScrollMagic.Controller();
+
+var tween = new TimelineMax()
+        .to(".luggage1", 0.5, {css:{left: "0",opacity:'1'},ease: Power4.easeOut })
+        .to(".luggage2", 0.5, {css:{top: "0",opacity:'1'},ease: Power4.easeOut })
+        .to(".luggage3", 0.5, {css:{right: "0",opacity:'1'},ease: Power4.easeOut });
+var luggageScene = new ScrollMagic.Scene({triggerElement: ".luggageSection"})
+              .setTween(tween)
+              .addTo(luggageScroll);        
+
 $(window).on("load resize",function(e){
    var triggerTop = $('#intro').outerHeight();
 
@@ -31,14 +100,14 @@ $(window).on("load resize",function(e){
   console.log('var triggerTop', triggerTop);
   var firstScroll = new ScrollMagic.Controller();
   var firstScene = new ScrollMagic.Scene({
-                   triggerElement:'.top-title',
+                   triggerElement:triggerTop,
                    offset:100,
                    duration: 30,
                   })
                   .setTween("#intro", 1, {opacity:0,y:30}) // trigger a TweenMax.to tween
                   .addTo(firstScroll);
-  // var firstScenePart2 = new ScrollMagic.Scene({
-  //                  triggerElement:'#intro',
+  // var luggageScene = new ScrollMagic.Scene({
+  //                  triggerElement:'.luggageSection',
   //                  duration: 100,
   //                  offset:triggerTop
   //                 })
@@ -107,7 +176,7 @@ function init() {
             }).setTween($tween).addTo(scrollController)
             // .addIndicators({name: "tween css class"});
           }
-    createScene(timeLine, "#three-container", "500", 100, 100); 
+    createScene(timeLine, "#three-container", "500", 100, 200); 
 }
 
 ////////////////////
